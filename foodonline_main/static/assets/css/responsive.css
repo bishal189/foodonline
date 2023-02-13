@@ -1,0 +1,10 @@
+@media screen and (max-width: 366px) {
+   .ml-s{
+    margin-left: 0!important;
+    
+}
+body{
+    background: red;
+}
+
+  }
