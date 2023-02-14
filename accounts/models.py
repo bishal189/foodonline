@@ -87,6 +87,23 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self,app_label):
         return True        
+    
+    
+    def get_role(self):
+           
+        if self.role == 1:
+            print(self.role)
+            user_role= 'vendor'
+            
+        # elif self.role == 2:
+        #     user_role = 'customer'
+        else:
+            print(self.role)
+            user_role = 'customer'
+        return user_role    
+
+        
+
 
 
 
@@ -114,7 +131,6 @@ class Userprofile(models.Model):
     modified_at=models.DateTimeField(auto_now_add=True)
     def __str__(self):
       return self.user.email
-
 
 
 
