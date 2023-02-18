@@ -55,3 +55,11 @@ def send_verification_email(request,user,mail_subject,email_template):
 #     email.send() 
 
 
+def  send_notfication(mail_subject,mail_template,context):
+    from_email=settings.DEFAULT_FROM_EMIAL
+    message=render_to_string(mail_template,context)
+     
+
+    to_email=context['user'].email
+    email=EmailMessage(mail_subject,message,from_email,to=[to_email])
+    email.send() 

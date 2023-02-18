@@ -1,0 +1,10 @@
+{% autoescape off %} 
+
+Hi {{ user.username }},  
+{% if is_approved %}
+congrulations ! your resturant has been approved by our admin team. --foodonline.com
+{% else %}
+we are sorry! you are not eligible for publishing your food menu on our marketplace.For more details,please contact support@bishalmurmu150@gmail.com 
+{% endif %}
+
+{% endautoescape %}  

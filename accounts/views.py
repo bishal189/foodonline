@@ -9,7 +9,7 @@ from django.core.exceptions import PermissionDenied
 from .utils import send_verification_email
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
-
+from vendor.models import vendor
 # Create your views here.
 
 # restrict the vandor from accessing the customer page
@@ -184,6 +184,8 @@ def custdashboard(request):
 @login_required(login_url='login')
 @user_passes_test(check_role_vendor)
 def vendordashboard(request):
+    # fetching profile and cover photos including stuff form userprofile
+
     return render(request,'accounts/vendordashboard.html')
 
 
