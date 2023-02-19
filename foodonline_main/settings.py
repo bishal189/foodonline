@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'vendor',
+    'Menu',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +63,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'accounts.context_processors.get_google_api',
                 'accounts.context_processors.get_vendor',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -174,3 +176,7 @@ EMAIL_PORT = 587
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMIAL='foodonline market place<bishalmurmu150@gmail.com>'
 ALLOWED_HOSTS=[]
+
+
+
+GOOGLE_API_KEY='AIzaSyC4yTudrg9pTcB2khAgrbCMBfVvbviOhVU'

@@ -9,7 +9,7 @@ from django.conf import settings
 
 def detect_user(user):
     if user.role == 1:
-        redirecturl= 'vendordashboard'
+        redirecturl='vendordashboard'
         return redirecturl
 
 
