@@ -10,7 +10,8 @@ from django.template.defaultfilters import slugify
 from Menu.models import Category
 from Menu.models import  Fooditem
 from accounts.views import check_role_vendor,check_role_customer
-from Menu.forms import Categoryform
+from Menu.forms import Categoryform, Fooditemsform
+
 # Create your views here.
 @login_required(login_url='login')
 @user_passes_test(check_role_vendor)
@@ -81,6 +82,8 @@ def fooditems_by_category(request,pk=None):
 
 
 
+@login_required(login_url='login')
+@user_passes_test(check_role_vendor)
 def add_category(request):
     if request.method == 'POST':
         form = Categoryform(request.POST)
@@ -105,6 +108,8 @@ def add_category(request):
 
 
 
+@login_required(login_url='login')
+@user_passes_test(check_role_vendor)
 def edit_category(request ,pk=None):
     category=get_object_or_404(Category,pk=pk)
     if request.method == 'POST':
@@ -120,7 +125,7 @@ def edit_category(request ,pk=None):
         else:
             print(form.errors) 
     else:
-         form=Categoryform(instance=category)
+        form=Categoryform(instance=category)
     context={
         'form':form,
         'category':category,
@@ -131,9 +136,78 @@ def edit_category(request ,pk=None):
 
 
 
+@login_required(login_url='login')
+@user_passes_test(check_role_vendor)
 def delete_category(request,pk=None):
     category=get_object_or_404(Category,pk=pk)
     category.delete()
     messages.success(request,'deleted sucessfully!')
     return redirect('menubuilder')
 
+
+
+@login_required(login_url='login')
+@user_passes_test(check_role_vendor)
+def add_food(request):
+    if request.method == 'POST':
+        form=Fooditemsform(request.POST,request.FILES)
+        if form.is_valid():
+            food_title=form.cleaned_data['food_title']
+            food=form.save(commit=False)
+            food.vendor=vendor.objects.get(user=request.user)
+            food.slug=slugify(food_title)
+            form.save()
+            messages.success(request,'added sucessfully!')
+            return redirect('fooditems_by_category',food.Category.id)
+        else:
+            print(form.errors)    
+
+    else:        
+      form=Fooditemsform()
+    #   modified this form
+      form.fields['Category'].queryset=Category.objects.filter(vendor=vendor.objects.get(user=request.user))
+    context={
+        'form':form
+    }
+    return render(request,'vendor/add_food.html',context)
+
+
+
+@login_required(login_url='login')
+@user_passes_test(check_role_vendor)
+def edit_food(request,pk=None):
+    food=get_object_or_404(Fooditem,pk=pk)
+    if request.method == 'POST':
+        form =Fooditemsform(request.POST,instance=food)
+        if form.is_valid():
+            food_name=form.cleaned_data['food_title']
+            food1=form.save(commit=False)
+            food1.vendor=vendor.objects.get(user=request.user)
+            food1.slug=slugify(food_name)
+            form.save()
+            messages.success(request,'updated sucessfully!')
+            return redirect('fooditems_by_category',food1.Category.id)
+        else:
+            print(form.errors) 
+    
+    else:
+        form=Fooditemsform(instance=food)
+        form.fields['Category'].queryset=Category.objects.filter(vendor=vendor.objects.get(user=request.user))
+    context={
+        'form':form,
+        'food':food,
+    }
+
+    return render(request,'vendor/edit_food.html',context)
+
+
+
+@login_required(login_url='login')
+@user_passes_test(check_role_vendor)
+def delete_food(request,pk=None):
+    food=get_object_or_404(Fooditem,pk=pk)
+    food.delete()
+    messages.success(request,'food items deleted sucessfully')
+    return redirect('fooditems_by_category',food.Category.id)
+   
+   

@@ -170,8 +170,8 @@ MESSAGE_TAGS = {
 # email configuration
 EMAIL_USE_TLS = True  
 EMAIL_HOST = 'smtp.gmail.com'  
-EMAIL_HOST_USER = 'bishalmurmu150@gmail.com'  
-EMAIL_HOST_PASSWORD = 'mwztxhnlqggvjetn'  
+EMAIL_HOST_USER = 'rippedhunk41@gmail.com'  
+EMAIL_HOST_PASSWORD = 'vwmmknspwaldfcik'  
 EMAIL_PORT = 587  
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMIAL='foodonline market place<bishalmurmu150@gmail.com>'

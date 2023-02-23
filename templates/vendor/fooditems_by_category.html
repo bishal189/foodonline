@@ -38,11 +38,20 @@
                                             <td class="text-left">
                                                 <img src="{{food.image.url}}"  width="50px" alt="image-cant-overload">
                                             </td>
+                                           
                                             <td class="text-left">
                                                 <a href=""><p class="mb-0 font-weight-bold">{{food.food_title}}</p> <small class="text-muted">{{food.descriptions}}</small> </a>
                                             
                                             </td>
-                                            <td><i class="fa-regular fa-pen-to-square"></i> &nbsp; <i class="fa-solid fa-trash text-danger"></i></td>
+                                           
+                                            <td>
+                                                {% if food.is_availabe %}
+                                                <span class="badge text-bg-primary">Available</span>
+                                                {% else %}
+                                                <span class="badge text-bg-danger">Not Available</span>
+                                                {% endif %}
+                                            </td>
+                                            <td><a href="{% url 'edit_food' food.id %}"><i class="fa-regular fa-pen-to-square"></i></a>&nbsp; <a href="{% url 'delete_food' food.id %}" onclick="return confirm('Are you sure want to delete?')"><i class="fa-solid fa-trash text-danger"></i></a> </td>
                                            
                                           </tr>
                                           {% endfor %}

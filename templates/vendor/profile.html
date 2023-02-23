@@ -33,7 +33,12 @@
                                                                     <li class="gal-img">
                                                                         <div class="drag-list">
                                                                             <div class="item-thumb">
+                                                                                {% if profile.profile_picture %}
                                                                                 <img class="thumbnail" src="{{profile.profile_picture.url}}" alt="">
+                                                                                {% else %}
+                                                                                <img class="thumbnail" src="{% static 'assets/images/default-profile.PNG' %}" alt="">
+                                                                                {% endif %}
+
                                                                             </div>
                                                                         </div>
                                                                     </li>
@@ -55,7 +60,11 @@
                                                                     <li class="gal-img">
                                                                         <div class="drag-list">
                                                                             <div class="item-thumb">
+                                                                                {% if profile.cover_picture %}
                                                                                 <img class="thumbnail" src="{{profile.cover_picture.url}}" alt="">
+                                                                                {% else %}
+                                                                                <img class="thumbnail" src="{% static 'assets/images/default-cover.PNG' %}" alt="">
+                                                                                {% endif %}
                                                                             </div>
                                                                         </div>
                                                                     </li>

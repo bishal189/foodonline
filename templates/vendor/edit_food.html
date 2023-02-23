@@ -20,7 +20,7 @@
                                 <h5 class="text-uppercase">Build your food menu</h5>
                                 <hr>
 
-                                <h6>Modified Category</h6>
+                                <h6>Modified Food</h6>
                                 <button class="btn btn-secondary" onclick="history.back()"><i class="fa-solid fa-arrow-left"></i> Back </button>
                                 <br><br>
 
@@ -29,7 +29,7 @@
 
 
                                 <!-- render form -->
-                                <form action="{% url 'edit_category' category.id%}" method="POST" enctype="multipart/form-data">
+                                <form action="{% url 'edit_food' food.id %}" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
 
                                     <div class="form-fields-set">
@@ -37,14 +37,40 @@
                                             <li>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="field-holder">
-                                                        <label>Category Name </label>
-                                                        {{form.category_name}}
+                                                        <label>Food Name </label>
+                                                        {{form.food_title}}
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                     <div class="field-holder">
                                                         <label>Descriptions </label>
-                                                        {{form.description}}
+                                                        {{form.descriptions}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="field-holder">
+                                                        <label>Category </label>
+                                                        {{form.Category}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <div class="field-holder">
+                                                        <label>Price </label>
+                                                        {{form.price}}
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                    <div class="field-holder">
+                                                        <label>Image </label>
+                                                        {{form.image}}
+                                                        <img src="{{food.image.url}}" alt="food-image" class="mt-2" width="100px">
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="field-holder">
+                                                        <label>Is available </label>
+                                                        {{form.is_availabe}}
                                                     </div>
                                                 </div>
 
@@ -62,9 +88,8 @@
                                         <div>
                                             <div class="field-holder">
                                                 <div class="payment-holder input-button-loader">
-                                                    
                                                     <button class="btn btn-info" type="submit"><i class="fa-solid fa-check" ></i>Update</button>
-                                                    <a href="{% url 'delete_category' category.id %}" onclick="return confirm('Are you sure want to delete category?')" class="btn btn-danger"><i class="fa-solid fa-trash text-white"></i>Delete</a>
+                                                    <a href="{% url 'delete_food' food.id %}" onclick="return confirm('Are you sure want to delete?')" class="btn btn-danger"><i class="fa-solid fa-trash text-white"></i>Delete</a>
                                                 </div>
                                             </div>
                                         </div>

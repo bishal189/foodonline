@@ -18,40 +18,51 @@
                         <div class="user-dashboard loader-holder">
                             <div class="user-holder">
                                 <h5 class="text-uppercase">Build your food menu</h5>
-                                 <hr>
-                                
-                                 <h6>Menu Categories</h6>
+                                <hr>
+
+                                <h6>Menu Categories</h6>
                                 <!-- My Restaurants Form Start -->
-                               
-                               <a href="#" class="btn btn-success float-right m-1"><i class="fa-solid fa-plus"></i>Add Food</a>
-                               <a href="{% url 'add_category' %}" class="btn btn-info float-right m-1" ><i class="fa-solid fa-plus"></i>Add Category</a>
-                               
-                               
+                                {% if category %}
+
+                                <a href="{% url 'add_food' %}" class="btn btn-success float-right m-1"><i class="fa-solid fa-plus"></i>Add
+                                    Food</a>
+                                <a href="{% url 'add_category' %}" class="btn btn-info float-right m-1"><i
+                                        class="fa-solid fa-plus"></i>Add Category</a>
+
+
                                 <table class="table table-hover table-borderless">
-                                   
-                                       
-                                        <tbody>
+
+
+                                    <tbody>
                                         {% for cat in category %}
-                                          <tr>
-                                            
+                                        <tr>
+
                                             <td class="text-left">{{forloop.counter}}</td>
                                             <td class="text-left">
-                                                <a href="{% url 'fooditems_by_category' cat.id %}"><p class="mb-0 font-weight-bold">{{cat}}</p> <small class="text-muted">{{cat.description}}</small> </a>
-                                            
+                                                <a href="{% url 'fooditems_by_category' cat.id %}">
+                                                    <p class="mb-0 font-weight-bold">{{cat}}</p> <small
+                                                        class="text-muted">{{cat.description}}</small>
+                                                </a>
+
                                             </td>
-                                            <td> <a href="{% url 'edit_category' cat.id %}"><i class="fa-regular fa-pen-to-square"></i> </a> &nbsp; <a href="{% url 'delete_category' cat.id %}" onclick="return confirm('are you sure want to delete it?')"><i class="fa-solid fa-trash text-danger"></i></a></td>
-                                           
-                                          </tr>
-                                          {% endfor %}
-                                        </tbody>
-                                     
-                                    
-                                  </table>
+                                            <td> <a href="{% url 'edit_category' cat.id %}"><i
+                                                        class="fa-regular fa-pen-to-square"></i> </a> &nbsp; <a
+                                                    href="{% url 'delete_category' cat.id %}"
+                                                    onclick="return confirm('are you sure want to delete it?')"><i
+                                                        class="fa-solid fa-trash text-danger"></i></a></td>
+
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
 
 
-                                           
-                                  
+                                </table>
 
+                                {% else %}
+                                <h5 class=" text-center">No categories are found! </h5>
+                                <div class="text-center"><a href="{% url 'add_category' %}" class="btn btn-success"><i class="fa-solid fa-plus"></i>
+                                    Add category</a></div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
