@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'vendor',
     'Menu',
+    'marketplace',
 ]
 
 MIDDLEWARE = [
@@ -174,7 +175,7 @@ EMAIL_HOST_USER = 'rippedhunk41@gmail.com'
 EMAIL_HOST_PASSWORD = 'vwmmknspwaldfcik'  
 EMAIL_PORT = 587  
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMIAL='foodonline market place<bishalmurmu150@gmail.com>'
+DEFAULT_FROM_EMIAL='foodonline market place<rippedhunk41@gmail.com>'
 ALLOWED_HOSTS=[]
 
 

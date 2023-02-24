@@ -19,7 +19,7 @@ def detect_user(user):
 
     elif user.role == None and user.is_superadmin:
         redirecturl='/admin'
-        return redirecturl    
+        return redirecturl  
 
 
 
