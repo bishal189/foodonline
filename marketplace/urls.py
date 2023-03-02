@@ -2,11 +2,15 @@
 from django.urls import path
 from . import views
 urlpatterns = [
-    path('',views.marketplace,name='Marketplace'),
-    path('<slug:vendor_slug>',views.vendor_details,name='vendor_details'),
-    # increase cart using ajax request
-    path('add_to_cart/<int:food_id>',views.add_cart,name='add_cart'),
-    # decrease cart using ajax request
-    path('decrease_to_cart/<int:food_id>',views.decrease_to_cart,name='decrease_to_cart'),
-   
+    path('',views.marketplace,name='Marketplace'),     
+    path('vendor_details/<slug:vendor_slug>',views.vendor_details,name='vendordetails'),   
+
+    # add to cart
+    path('add_to_cart/<int:food_id>/',views.add_to_cart,name="add_to_cart"),  
+     
+    # decrease cart 
+      path('decrease_cart/<int:food_id>/',views.decrease_cart,name="decrease_cart"),  
 ]
+
+    
+   

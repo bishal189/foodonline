@@ -2,17 +2,21 @@ from .models import Cart
 from Menu.models import Fooditem
 
 def get_cart_counter(request):
-    cart_count=0
+    cart_counter=0
     if request.user.is_authenticated:
         try:
-            cart_items=Cart.objects.filter(user=request.user)
+            cart_items=Cart.objects.filter(user=request.user,)
             if cart_items:
                 for cart_item in cart_items:
-                    cart_count+=cart_item.quantity
+                    cart_counter+=cart_item.quantity
+            
+
+
             else:
-                cart_count=0
+                cart_counter=0
         except:
-            cart_count=0
+            cart_counter=0            
 
+    
 
-    return dict(cart_count=cart_count)
+    return dict(cart_counter=cart_counter)

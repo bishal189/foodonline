@@ -4,9 +4,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def home(request):
-    Vendor=vendor.objects.filter(is_approved=True,user__is_active=True)[:8]
+    
+    items=vendor.objects.filter(is_approved=True,user__is_active=True)[:8]
     context={
-        'vendor':Vendor,
+        'items':items
     }
-    # print(Vendor,'*********')
     return render(request,'home.html',context)
