@@ -67,6 +67,7 @@ TEMPLATES = [
                 'accounts.context_processors.get_google_api',
                 'accounts.context_processors.get_vendor',
                 'marketplace.context_processors.get_cart_counter',
+                'marketplace.context_processors.get_cart_amounts',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
